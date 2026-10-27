@@ -83,8 +83,8 @@ CardioInsight-AI/
 
 ### 1. Clone & Create Virtual Environment
 ```cmd
-git clone https://github.com/your-org/cardioinsight-ai.git
-cd cardioinsight-ai
+git clone https://github.com/mdsahilparvezai/CardioInsight-AI.git
+cd CardioInsight-AI
 
 python -m venv .venv
 .\.venv\Scripts\activate
