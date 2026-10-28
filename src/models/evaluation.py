@@ -73,7 +73,10 @@ def _roc_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
     tpr = np.cumsum(y_true) / n_pos
     fpr = np.cumsum(1 - y_true) / n_neg
     # trapezoidal integration
-    return float(np.trapz(tpr, fpr))
+    trapezoid = getattr(np, "trapezoid", None)
+    if trapezoid is None:  # NumPy < 2.0
+        trapezoid = np.trapz
+    return float(trapezoid(tpr, fpr))
 
 
 def evaluate_model(
