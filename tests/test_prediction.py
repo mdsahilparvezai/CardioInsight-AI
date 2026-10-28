@@ -19,7 +19,7 @@ class TestPredictor:
     """Prediction service tests."""
 
     @pytest.fixture(scope="class")
-    def artifact_path(self):
+    def artifact_path():
         """Create a temporary model artifact for testing."""
         df = generate_synthetic_dataset(n_samples=100, seed=42)
         X = df[FEATURE_COLUMNS].values

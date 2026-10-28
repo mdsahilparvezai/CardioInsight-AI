@@ -54,6 +54,9 @@ COPY --chown=appuser:appuser .env.example .
 # Create models directory (will be populated at runtime or via volume)
 RUN mkdir -p /app/models && chown appuser:appuser /app/models
 
+# Ensure Python can find the src package
+ENV PYTHONPATH=/app
+
 # Switch to non-root user
 USER appuser
 
