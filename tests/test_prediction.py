@@ -22,7 +22,7 @@ class TestPredictor:
     def artifact_path(self):
         """Create a temporary model artifact for testing."""
         df = generate_synthetic_dataset(n_samples=100, seed=42)
-        X = df[FEATURE_COLUMNS].values
+        X = df[list(FEATURE_COLUMNS)].values
         y = df["target"].values
 
         engine = select_engine("random_forest", engine="numpy",

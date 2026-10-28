@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import sys
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -19,20 +21,20 @@ from src.data.schema import FEATURE_COLUMNS, FEATURE_METADATA
 class TestPreprocessor:
     """Preprocessing pipeline tests."""
 
-    def test_build_preprocessor_returns_none_without_sklearn(self):
-        # In this environment sklearn is not available
+    def test_build_preprocessor_returns_none_without_sklearn(self, monkeypatch):
+        monkeypatch.setitem(sys.modules, "sklearn", None)
         preprocessor = build_preprocessor()
         assert preprocessor is None
 
     def test_fit_preprocessor_raises_on_none(self):
         df = generate_synthetic_dataset(seed=42)
-        X = df[FEATURE_COLUMNS]
+        X = df[list(FEATURE_COLUMNS)]
         with pytest.raises(RuntimeError, match="No preprocessor available"):
             fit_preprocessor(None, X)
 
     def test_transform_features_raises_on_none(self):
         df = generate_synthetic_dataset(seed=42)
-        X = df[FEATURE_COLUMNS]
+        X = df[list(FEATURE_COLUMNS)]
         with pytest.raises(RuntimeError, match="No preprocessor available"):
             transform_features(None, X)
 

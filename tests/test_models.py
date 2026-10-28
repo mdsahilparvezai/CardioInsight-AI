@@ -52,7 +52,7 @@ class TestEngines:
 
     def test_engine_fit_predict_roundtrip(self):
         df = generate_synthetic_dataset(n_samples=100, seed=42)
-        X = df[FEATURE_COLUMNS].values
+        X = df[list(FEATURE_COLUMNS)].values
         y = df["target"].values
 
         for mtype in ["random_forest", "naive_bayes"]:
@@ -118,7 +118,7 @@ class TestEvaluation:
 
     def test_compare_models_returns_dataframe(self):
         df = generate_synthetic_dataset(n_samples=100, seed=42)
-        X = df[FEATURE_COLUMNS].values
+        X = df[list(FEATURE_COLUMNS)].values
         y = df["target"].values
 
         models = {}
@@ -153,7 +153,7 @@ class TestIO:
 
     def test_save_load_artifacts_roundtrip(self):
         df = generate_synthetic_dataset(n_samples=50, seed=42)
-        X = df[FEATURE_COLUMNS].values
+        X = df[list(FEATURE_COLUMNS)].values
         y = df["target"].values
 
         engine = select_engine("random_forest", engine="numpy",
@@ -194,7 +194,7 @@ class TestIO:
 
     def test_metadata_json_readable(self):
         df = generate_synthetic_dataset(n_samples=50, seed=42)
-        X = df[FEATURE_COLUMNS].values
+        X = df[list(FEATURE_COLUMNS)].values
         y = df["target"].values
 
         engine = select_engine("naive_bayes", engine="numpy", random_state=42)
