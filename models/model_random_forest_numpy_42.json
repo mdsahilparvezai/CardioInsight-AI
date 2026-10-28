@@ -161,7 +161,7 @@
     "ca",
     "thal"
   ],
-  "trained_at": "2026-10-27T11:33:59.808962",
+  "trained_at": "2026-10-29T00:12:08.883882",
   "random_seed": 42,
   "n_train_samples": 214,
   "n_features": 13
